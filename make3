@@ -1,0 +1,15 @@
+# https://arduino.stackexchange.com/questions/12114/basic-makefile-for-avr-gcc
+CC=avr-gcc
+OBJCOPY=avr-objcopy
+
+CFLAGS=-Os -DF_CPU=16000000UL -mmcu=atmega328p
+PORT=/dev/ttyACM0
+
+main.hex: main.elf
+    ${OBJCOPY} -O ihex -R .eeprom main.elf main.hex
+
+main.elf: main.o
+    ${CC} -o main.elf main.o
+
+install: main.hex
+    avrdude -F -V -c arduino -p ATMEGA328P -P ${PORT} -b 115200 -U flash:w:main.hex
