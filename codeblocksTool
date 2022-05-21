@@ -3,3 +3,15 @@ Executable avrdude
 Parameters
 -p m328p -c arduino  -P /dev/ttyUSB0 -U flash:w:$(PROJECT_DIR)bin/Debug/$(PROJECT_NAME).hex:i
 -p m328p -c arduino  -P com4 -U flash:w:$(PROJECT_DIR)bin/Debug/$(PROJECT_NAME).hex:i
+
+microchip/atmel studio 
+windows sometimes accepts avrdude.exe other times need to locate and set
+
+diff pc's assign diff port numbers
+
+nano
+-p m328p -c arduino -P  com3 -b 57600  -U flash:w:$(BinDir)\$(TargetName).hex:i
+
+uno
+-p m328p -c arduino -P com4  -U flash:w:$(BinDir)\$(TargetName).hex:i
+
