@@ -1,0 +1,11 @@
+// PB5 is the LED on pin13 of Uno
+#include<avr/io.h>
+#include<util/delay.h>
+#define F_CPU 16000000
+int main()
+{	DDRB = 0b00100000;	// PB5 LED enable
+	while(1)
+	{	PORTB = 0b00100000;	// turn on
+		_delay_ms(500);		// wait
+		PORTB = 0b00000000; // turn off
+	_delay_ms(500);	}}
