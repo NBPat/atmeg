@@ -1,4 +1,8 @@
 // PORTB is an 8bit number at address 0x24
+#define F_CPU 16000000
 #include <avr/io.h>
-int main(void){   DDRB = 0xFF; 	// PORTB on   
-	while(1){PORTB++;}}  		// increment PORTB
+#include <util/delay.h>
+int main(void){   DDRB = 0xFF; 	// turn PORTB on
+	while(1){PORTB++;  			// increment PORTB
+		_delay_ms(100);			// delay
+}}
