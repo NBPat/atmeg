@@ -15,3 +15,107 @@ nano
 uno
 -p m328p -c arduino -P com4  -U flash:w:$(BinDir)\$(TargetName).hex:i
 
+
+
+avra from simulide
+put avra.exe + Blink.asm + folder of definitions named avra
+
+so
+avra -W NoRegDef -l Blink.lst -I avra Blink.asm
+avra -W NoRegDef -I avra Blink.asm
+avra -I avra Blink.asm
+
+does work because I moved a folder called avra containing 50 definitions
+- Blink.lst generates a duplicate of m328pdef.inc
+
+
+C:\Users\pat\avra>avra -W NoRegDef -I avra Blink.asm
+AVRA: advanced AVR macro assembler Version 1.3.0 Build 1 (8 May 2010)
+Copyright (C) 1998-2010. Check out README file for more info
+
+   AVRA is an open source assembler for Atmel AVR microcontroller family
+   It can be used as a replacement of 'AVRASM32.EXE' the original assembler
+   shipped with AVR Studio. We do not guarantee full compatibility for avra.
+
+   AVRA comes with NO WARRANTY, to the extent permitted by law.
+   You may redistribute copies of avra under the terms
+   of the GNU General Public License.
+   For more information about these matters, see the files named COPYING.
+
+Pass 1...
+avra/m328pdef.inc(44) : PRAGMA directives currently ignored
+avra/m328pdef.inc(48) : PRAGMA directives currently ignored
+avra/m328pdef.inc(53) : PRAGMA directives currently ignored
+avra/m328pdef.inc(923) : PRAGMA directives currently ignored
+avra/m328pdef.inc(924) : PRAGMA directives currently ignored
+avra/m328pdef.inc(925) : PRAGMA directives currently ignored
+avra/m328pdef.inc(926) : PRAGMA directives currently ignored
+Pass 2...
+avra/m328pdef.inc(44) : PRAGMA directives currently ignored
+avra/m328pdef.inc(48) : PRAGMA directives currently ignored
+avra/m328pdef.inc(53) : PRAGMA directives currently ignored
+avra/m328pdef.inc(923) : PRAGMA directives currently ignored
+avra/m328pdef.inc(924) : PRAGMA directives currently ignored
+avra/m328pdef.inc(925) : PRAGMA directives currently ignored
+avra/m328pdef.inc(926) : PRAGMA directives currently ignored
+done
+
+Used memory blocks:
+   Code      :  Start = 0x0000, End = 0x000C, Length = 0x000D
+
+Assembly complete with no errors.
+Segment usage:
+   Code      :        13 words (26 bytes)
+   Data      :         0 bytes
+   EEPROM    :         0 bytes
+
+C:\Users\pat\avra>avra --version
+AVRA: advanced AVR macro assembler Version 1.3.0 Build 1 (8 May 2010)
+Copyright (C) 1998-2010. Check out README file for more info
+
+   AVRA is an open source assembler for Atmel AVR microcontroller family
+   It can be used as a replacement of 'AVRASM32.EXE' the original assembler
+   shipped with AVR Studio. We do not guarantee full compatibility for avra.
+
+   AVRA comes with NO WARRANTY, to the extent permitted by law.
+   You may redistribute copies of avra under the terms
+   of the GNU General Public License.
+   For more information about these matters, see the files named COPYING.
+
+C:\Users\pat\avra>avra --help
+AVRA: advanced AVR macro assembler Version 1.3.0 Build 1 (8 May 2010)
+Copyright (C) 1998-2010. Check out README file for more info
+
+   AVRA is an open source assembler for Atmel AVR microcontroller family
+   It can be used as a replacement of 'AVRASM32.EXE' the original assembler
+   shipped with AVR Studio. We do not guarantee full compatibility for avra.
+
+   AVRA comes with NO WARRANTY, to the extent permitted by law.
+   You may redistribute copies of avra under the terms
+   of the GNU General Public License.
+   For more information about these matters, see the files named COPYING.
+
+usage: avra [-f][O|M|I|G] output file type
+            [-o <filename>] output file name
+            [-l <filename>] generate list file
+            [-m <mapfile>] generate map file
+[--define <symbol>[=<value>]]  [--includedir <dir>] [--listmac]
+            [--max_errors <number>] [--devices] [--version]
+            [-h] [--help] general help
+                        <file to assemble>
+
+   --listfile    -l : Create list file
+   --mapfile     -m : Create map file
+   --define      -D : Define symbol.
+   --includepath  -I : Additional include paths.
+   --listmac        : List macro expansion in listfile.
+   --max_errors     : Maximum number of errors before exit
+                      (default: 10)
+   --devices        : List out supported devices.
+   --version        : Version information.
+   --help, -h       : This help text.
+
+Just replace the AVRASM32.EXE with AVRA.EXE in your
+AVRStudio directories to avra's binary.
+
+C:\Users\pat\avra>
