@@ -16,6 +16,9 @@ uno
 -p m328p -c arduino -P com4  -U flash:w:$(BinDir)\$(TargetName).hex:i
 
 
+to stop conflict with brail tty 
+$ sudo apt-get remove brltty 
+
 
 avra from simulide
 put avra.exe + Blink.asm + folder of definitions named avra
