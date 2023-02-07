@@ -1,4 +1,4 @@
-// PORTB is an 8bit number at address 0x24
+// PORTB is an 8bit number at address 0x25
 #define F_CPU 16000000
 #include <avr/io.h>
 #include <util/delay.h>
